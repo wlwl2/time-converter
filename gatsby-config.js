@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/time-converter",
   siteMetadata: {
     title: ` Time Converter`,
     description: `Demo of a simple offline web time 
