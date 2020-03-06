@@ -49,6 +49,10 @@ class TimeRightNow extends Component {
   render () {
     return (
       <div>
+        <div>
+          Warning: This is just used for testing the basic features (service workers etc.). A good version of the 
+          converter will be available before 19 March 2020.
+        </div>
         <div className={css.mainTimeContainer}>
           <OriginCard location="Singapore" originTime={this.state.singaporeTime} />
           <TimeZoneSelector />
