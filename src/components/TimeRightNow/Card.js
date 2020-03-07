@@ -20,35 +20,20 @@ function Card (props) {
     }
   }
   
-  function deleteButtonClick () {
-    props.deleteButton(props.index)
-  }
-  
   return (
     <section className={css.timeGroup}>
       {props.location}: 
       <div className={css.time}>
-        {props.timeNow.setZone(props.timeZone).toFormat(timeNowFormat)}
+        {props.targetTime.toFormat(timeNowFormat)}
       </div>
       <div className={css.dayDiffMessage}>
-        {dayDiffMessage(
-          props.timeNow.setZone(props.originTimeZone), 
-          props.timeNow.setZone(props.timeZone)
-        )}
+        {dayDiffMessage(props.originTime, props.targetTime)}
       </div>
       <div className={css.date}>
-        {props.timeNow.setZone(props.timeZone).toFormat(dateNowFormat)}
+        {props.targetTime.toFormat(dateNowFormat)}
       </div>
       <div className={css.namedOffset}>
-        {props.timeNow.setZone(props.timeZone).toFormat(namedOffsetFormat)}
-      </div>
-      <div>
-        <button 
-          className={css.deleteButton}
-          onClick={deleteButtonClick}
-          >
-          Delete
-        </button>
+        {props.targetTime.toFormat(namedOffsetFormat)}
       </div>
     </section>
   );

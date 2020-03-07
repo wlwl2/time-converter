@@ -14,7 +14,6 @@
   padding: 10px;
   width: 220px;
   vertical-align: top;
-  position: relative;
 }
 
 .namedOffset {
@@ -24,15 +23,4 @@
 .dayDiffMessage {
   font-size: 20px;
   font-weight: bold;
-}
-
-.deleteButton {
-  font-size: 12px;
-  line-height: 14px;
-  border-radius: 4px;
-  color: #EEEEEE;
-  background-color: #4a4a4a;
-  border-width: 1px;
-  border-color: #626161;
-  cursor: pointer;
 }

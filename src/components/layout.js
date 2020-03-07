@@ -13,7 +13,6 @@ import Header from "./layout/header"
 import TitleLinks from "./layout/titleLinks"
 import Footer from "./layout/footer"
 import "./layout.css"
-import css from './layout.module.css'
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -30,7 +29,7 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
       <TitleLinks />
-      <div className={css.layout}>
+      <div style={{ margin: `0 auto`, maxWidth: 960, padding: `0 0 1.45rem`}}>
         <main>{children}</main>
       </div>
       <Footer />

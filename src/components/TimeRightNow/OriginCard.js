@@ -10,13 +10,13 @@ function OriginCard (props) {
     <section className={css.mainTimeGroup}>
       {props.location}:  
       <div className={css.timeNow}>
-        {props.timeNow.setZone(props.timeZone).toFormat(timeNowFormat)}
+        {props.originTime.toFormat(timeNowFormat)}
       </div>
       <div className={css.dateNow}>
-        {props.timeNow.setZone(props.timeZone).toFormat(dateNowFormat)}
+        {props.originTime.toFormat(dateNowFormat)}
       </div>
       <div className={css.namedOffsetNow}>
-        {props.timeNow.setZone(props.timeZone).toFormat(namedOffsetFormat)}
+        {props.originTime.toFormat(namedOffsetFormat)}
       </div>
     </section>
   );

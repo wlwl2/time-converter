@@ -1,25 +1,9 @@
 import React, {Component} from "react"
-import {DateTime} from "luxon"
+import { DateTime } from "luxon"
 import OriginCard from './OriginCard'
 import Card from './Card'
 import TimeZoneSelector from './TimeZoneSelector'
 import css from "./TimeRightNow.module.css"
-import {INITIAL_CARD_ZONES} from './INITIAL_CARD_ZONES'
-
-const initialMainZone = { location: 'Local Time', timeZone: DateTime.local().zone.name }
-
-let storedCardZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
-// These sorts of checks are problematic.
-if (!storedCardZones) {
-  window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
-  storedCardZones = INITIAL_CARD_ZONES
-}
-
-let storedMainZone = JSON.parse(window.localStorage.getItem('timeRightNow-mainZone'))
-if (!storedMainZone) {
-  window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
-  storedMainZone = initialMainZone
-}
 
 class TimeRightNow extends Component {
   constructor (props) {
@@ -28,14 +12,15 @@ class TimeRightNow extends Component {
     this.dateNowFormat = "ccc d LLL y"
     this.namedOffsetFormat = "ZZZZZ"
     this.narrowOffsetFormat = "Z"
-    this.resetAll = this.resetAll.bind(this)
-    this.changeMainTimeZone = this.changeMainTimeZone.bind(this)
-    this.addTimeZone = this.addTimeZone.bind(this)
-    this.removeTimeZone = this.removeTimeZone.bind(this)
+    this.timeNow = DateTime.local()
     this.state = {
-      timeNow: DateTime.local().setZone(storedMainZone.timeZone),
-      mainTimeZone: storedMainZone,
-      cardZones: storedCardZones
+      singaporeTime: this.timeNow.setZone("Asia/Singapore"),
+      bostonTime: this.timeNow.setZone("America/New_York"),
+      laTime: this.timeNow.setZone("America/Los_Angeles"),
+      freiburgTime: this.timeNow.setZone("Europe/Berlin"),
+      londonTime: this.timeNow.setZone("Europe/London"),
+      sydneyTime: this.timeNow.setZone("Australia/Sydney"),
+      shanghaiTime: this.timeNow.setZone("Asia/Shanghai")
     }
   }
   
@@ -48,79 +33,46 @@ class TimeRightNow extends Component {
   }
   
   tick () {
-    // const timeNow = DateTime.local().plus({hours: -3})
-    this.setState({ timeNow: DateTime.local().setZone(storedMainZone.timeZone) })
-  }
-  
-  resetAll () {
-    const initialMainZone = { location: 'Local Time', timeZone: DateTime.local().zone.name }
-    window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
+    // const timeNow = DateTime.local().minus({hours: 3})
+    const timeNow = DateTime.local()
     this.setState({
-      mainTimeZone: initialMainZone,
-      cardZones: INITIAL_CARD_ZONES
+      singaporeTime: timeNow.setZone("Asia/Singapore"),
+      bostonTime: timeNow.setZone("America/New_York"),
+      laTime: timeNow.setZone("America/Los_Angeles"),
+      freiburgTime: timeNow.setZone("Europe/Berlin"),
+      londonTime: timeNow.setZone("Europe/London"),
+      sydneyTime: timeNow.setZone("Australia/Sydney"),
+      shanghaiTime: timeNow.setZone("Asia/Shanghai")
     })
-  }
-  
-  changeMainTimeZone (iANATZName) {
-    let timeZone = { location: iANATZName, timeZone: iANATZName }
-    window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(timeZone))
-    this.setState({ mainTimeZone: timeZone })
-  }
-  
-  addTimeZone (iANATZName) {
-    let timeZoneToBeAdded = { location: iANATZName, timeZone: iANATZName }
-    let oldTimeZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
-    let newTimeZones = oldTimeZones.concat([timeZoneToBeAdded])
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(newTimeZones))
-    this.setState({ cardZones: newTimeZones })
-  }
-  
-  removeTimeZone (indexToRemove) {
-    let oldTimeZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
-    let filtered = oldTimeZones.filter(checkIndex)
-    function checkIndex (timeZone, index) {
-      if (index !== indexToRemove) return timeZone
-    }
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(filtered))
-    this.setState({ cardZones: filtered })
   }
   
   render () {
-    const cards = this.state.cardZones.map((cardZone, index) => {
-      return (
-        <Card
-          key={index}
-          index={index}
-          location={cardZone.location}
-          timeZone={cardZone.timeZone}
-          timeNow={this.state.timeNow}
-          originTimeZone={this.state.mainTimeZone.timeZone}
-          deleteButton={this.removeTimeZone}
-        />
-      )
-    })
-    
     return (
       <div>
+        <div>
+          Warning: The time converter has been completed but is just not 
+          transferred yet. This website was just used for testing.
+          The final time converter will be available on 19 March 2020.
+        </div>
         <div className={css.mainTimeContainer}>
-          <OriginCard 
-            location={this.state.mainTimeZone.location}
-            timeZone={this.state.mainTimeZone.timeZone}
-            timeNow={this.state.timeNow} />
-          <TimeZoneSelector 
-            role="Main"
-            timeZone={this.state.mainTimeZone.timeZone}
-            resetAllButtonClick={this.resetAll}
-            selectMainTimeZone={this.changeMainTimeZone}
-            />
+          <OriginCard location="Singapore" originTime={this.state.singaporeTime} />
+          <TimeZoneSelector />
         </div>
         <div className={css.TimeContainer}>
-          {cards}
-          <TimeZoneSelector 
-            role="Add Card"
-            addButtonClick={this.addTimeZone}
-            />
+          <Card location="Boston" originLocation="Singapore"
+            originTime={this.state.singaporeTime} targetTime={this.state.bostonTime} />
+          <Card location="New York" originLocation="Singapore"
+            originTime={this.state.singaporeTime} targetTime={this.state.bostonTime} />
+          <Card location="Freiburg" originLocation="Singapore"
+            originTime={this.state.singaporeTime} targetTime={this.state.freiburgTime} />
+          <Card location="Los Angeles" originLocation="Singapore"
+            originTime={this.state.singaporeTime} targetTime={this.state.laTime} />
+          <Card location="London" originLocation="Singapore"
+            originTime={this.state.singaporeTime} targetTime={this.state.londonTime} />
+          <Card location="Sydney" originLocation="Singapore"
+            originTime={this.state.singaporeTime} targetTime={this.state.sydneyTime} />
+          <Card location="Shanghai" originLocation="Singapore"
+            originTime={this.state.singaporeTime} targetTime={this.state.shanghaiTime} />
         </div>
       </div>
     )

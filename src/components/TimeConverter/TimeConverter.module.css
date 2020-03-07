@@ -1,43 +1,37 @@
-.datepickerContainer {
-  padding: 10px 0;
+.timeNow {
+  font-size: 40px;
+  line-height: 1.4em;
 }
 
-.datepickerContainer input[type="text"] {
-  border-radius: 4px;
-  border-style: none;
-  background-color: #EEEEEE;
-  padding: 2px 10px;
+.dateNow {
+  font-size: 24px;
+  line-height: 1.4em;
+}
+
+.time {
+  font-size: 32px;
+  line-height: 1.4em;
+}
+
+.date {
+  font-size: 24px;
+  line-height: 1.4em;
 }
 
 .timeGroup {
   display: inline-block;
-  width: 50%;
-  min-height: 300px;
+  margin: 0 0 10px 0;
+  padding: 10px;
+  width: 220px;
   vertical-align: top;
-  text-align: center;
 }
 
-.title {
-  font-size: 24px;
+.mainTimeGroup {
+  margin: 20px 0;
+  padding: 10px;
 }
 
-.instructions {
-  padding: 10px 0 0 0;
-}
-
-.timeConverter {
-  border: 1px solid #EEEEEE;
-  padding: 20px;
-  border-radius: 4px;
-}
-
-.resetButton {
-  font-size: 12px;
-  line-height: 14px;
-  border-radius: 4px;
-  color: #EEEEEE;
-  background-color: #4a4a4a;
-  border-width: 1px;
-  border-color: #626161;
-  cursor: pointer;
+.namedOffset,
+.namedOffsetNow {
+  font-size: 16px;
 }
