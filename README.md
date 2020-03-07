@@ -36,4 +36,22 @@ module.exports = {
 
 3. Run `npm run deploy`.
 
+Your app should automatically appear at:
+
+https://yourusername.github.io/reponame/
+
+All contents of the **public** folder will be moved to your repository’s
+gh-pages branch. A commit is automatically created and pushed to the 
+remote gh-pages branch.
+
+## Development
+
+Run `gatsby develop`.
+
+## Building and Production
+
+Run `gatsby build` to build the project and output to the root `./public`
+folder.
+
+Run `gatsby serve` after building to serve the build.
 
