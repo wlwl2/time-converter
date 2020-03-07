@@ -11,24 +11,6 @@ import {TIMEZONES_WITH_COMMENTS} from '../TimeRightNow/TIMEZONES_WITH_COMMENTS'
 const initialTimeZone = DateTime.local().zone.name
 const initialTime = Date.now()
 
-let storedOriginTimeZone = window.localStorage.getItem('timeConverter-originTimeZone')
-if (!storedOriginTimeZone) {
-  window.localStorage.setItem('timeConverter-originTimeZone', initialTimeZone)
-  storedOriginTimeZone = initialTimeZone
-}
-
-let storedTargetTimeZone = window.localStorage.getItem('timeConverter-targetTimeZone')
-if (!storedTargetTimeZone) {
-  window.localStorage.setItem('timeConverter-targetTimeZone', initialTimeZone)
-  storedTargetTimeZone = initialTimeZone
-}
-
-let storedOriginTime = Number(window.localStorage.getItem('timeConverter-originTime'))
-if (!storedOriginTime) {
-  window.localStorage.setItem('timeConverter-originTime', initialTime.toString())
-  storedOriginTime = initialTime
-}
-
 class TimeConverter extends Component {
   constructor (props) {
     super(props)
@@ -38,10 +20,10 @@ class TimeConverter extends Component {
     this.changeOriginTime = this.changeOriginTime.bind(this)
     this.resetTime = this.resetTime.bind(this)
     this.state = {
-      localTimeNow: DateTime.local().setZone(this.localZoneName),
-      originTimeZone: storedOriginTimeZone,
-      targetTimeZone: storedTargetTimeZone,
-      originTime: storedOriginTime,
+      localTimeNow: DateTime.local().setZone(initialTimeZone),
+      originTimeZone: initialTimeZone,
+      targetTimeZone: initialTimeZone,
+      originTime: initialTime,
       originSelectOptions: TIMEZONES_WITH_COMMENTS,
       targetSelectOptions: TIMEZONES_WITH_COMMENTS
     }
@@ -53,6 +35,33 @@ class TimeConverter extends Component {
   }
   
   componentDidMount () {
+    this.storedOriginTimeZone = window.localStorage.getItem('timeConverter-originTimeZone')
+    if (!this.storedOriginTimeZone) {
+      window.localStorage.setItem('timeConverter-originTimeZone', initialTimeZone)
+      this.storedOriginTimeZone = initialTimeZone
+    }
+    
+    this.storedTargetTimeZone = window.localStorage.getItem('timeConverter-targetTimeZone')
+    if (!this.storedTargetTimeZone) {
+      window.localStorage.setItem('timeConverter-targetTimeZone', initialTimeZone)
+      this.storedTargetTimeZone = initialTimeZone
+    }
+    
+    this.storedOriginTime = Number(window.localStorage.getItem('timeConverter-originTime'))
+    if (!this.storedOriginTime) {
+      window.localStorage.setItem('timeConverter-originTime', initialTime.toString())
+      this.storedOriginTime = initialTime
+    }
+    
+    this.setState({
+      localTimeNow: DateTime.local().setZone(this.localZoneName),
+      originTimeZone: this.storedOriginTimeZone,
+      targetTimeZone: this.storedTargetTimeZone,
+      originTime: this.storedOriginTime,
+      originSelectOptions: TIMEZONES_WITH_COMMENTS,
+      targetSelectOptions: TIMEZONES_WITH_COMMENTS
+    })
+    
     this.timerID = setInterval(() => this.tick(), 1000)
   }
   

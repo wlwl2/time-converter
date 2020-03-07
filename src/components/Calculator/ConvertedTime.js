@@ -7,7 +7,6 @@ function ConvertedTime (props) {
   return (
     <section className={css.mainTimeGroup}>
       <div className={css.namedOffsetNow}>
-        {props.timeNow.setZone(props.timeZone).toFormat(namedOffsetFormat)}
       </div>
     </section>
   )

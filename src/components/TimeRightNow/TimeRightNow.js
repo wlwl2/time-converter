@@ -8,19 +8,6 @@ import {INITIAL_CARD_ZONES} from './INITIAL_CARD_ZONES'
 
 const initialMainZone = { location: 'Local Time', timeZone: DateTime.local().zone.name }
 
-let storedCardZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
-// These sorts of checks are problematic.
-if (!storedCardZones) {
-  window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
-  storedCardZones = INITIAL_CARD_ZONES
-}
-
-let storedMainZone = JSON.parse(window.localStorage.getItem('timeRightNow-mainZone'))
-if (!storedMainZone) {
-  window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
-  storedMainZone = initialMainZone
-}
-
 class TimeRightNow extends Component {
   constructor (props) {
     super(props)
@@ -33,13 +20,32 @@ class TimeRightNow extends Component {
     this.addTimeZone = this.addTimeZone.bind(this)
     this.removeTimeZone = this.removeTimeZone.bind(this)
     this.state = {
-      timeNow: DateTime.local().setZone(storedMainZone.timeZone),
-      mainTimeZone: storedMainZone,
-      cardZones: storedCardZones
+      timeNow: DateTime.local().setZone(initialMainZone.timeZone),
+      mainTimeZone: initialMainZone.timeZone,
+      cardZones: INITIAL_CARD_ZONES
     }
   }
   
   componentDidMount () {
+    this.storedCardZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
+    // These sorts of checks are problematic.
+    if (!this.storedCardZones) {
+      window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
+      this.storedCardZones = INITIAL_CARD_ZONES
+    }
+    
+    this.storedMainZone = JSON.parse(window.localStorage.getItem('timeRightNow-mainZone'))
+    if (!this.storedMainZone) {
+      window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
+      this.storedMainZone = initialMainZone
+    }
+    
+    this.setState({
+      timeNow: DateTime.local().setZone(this.storedMainZone.timeZone),
+      mainTimeZone: this.storedMainZone,
+      cardZones: this.storedCardZones
+    })
+    
     this.timerID = setInterval(() => this.tick(), 1000)
   }
   
@@ -49,7 +55,7 @@ class TimeRightNow extends Component {
   
   tick () {
     // const timeNow = DateTime.local().plus({hours: -3})
-    this.setState({ timeNow: DateTime.local().setZone(storedMainZone.timeZone) })
+    this.setState({ timeNow: DateTime.local().setZone(this.storedMainZone.timeZone) })
   }
   
   resetAll () {

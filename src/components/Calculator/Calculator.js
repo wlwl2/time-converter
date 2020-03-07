@@ -10,18 +10,6 @@ import ZoneSelector from './ZoneSelector'
 const initialTimeZone = DateTime.local().zone.name
 const initialTime = Date.now()
 
-let storedTimeZone = window.localStorage.getItem('calculator-timeZone')
-if (!storedTimeZone) {
-  window.localStorage.setItem('calculator-timeZone', initialTimeZone)
-  storedTimeZone = initialTimeZone
-}
-
-let storedOriginTime = Number(window.localStorage.getItem('calculator-originTime'))
-if (!storedOriginTime) {
-  window.localStorage.setItem('calculator-originTime', initialTime.toString())
-  storedOriginTime = initialTime
-}
-
 class TimeConverter extends Component {
   constructor (props) {
     super(props)
@@ -30,13 +18,31 @@ class TimeConverter extends Component {
     this.changeTime = this.changeTime.bind(this)
     this.resetTime = this.resetTime.bind(this)
     this.state = {
-      localTimeNow: DateTime.local().setZone(this.localZoneName),
-      timeZone: storedTimeZone,
-      originTime: storedOriginTime
+      localTimeNow: DateTime.local().setZone(initialTimeZone),
+      timeZone: initialTimeZone,
+      originTime: initialTime
     }
   }
 
   componentDidMount () {
+    this.storedTimeZone = window.localStorage.getItem('calculator-timeZone')
+    if (!this.storedTimeZone) {
+      window.localStorage.setItem('calculator-timeZone', initialTimeZone)
+      this.storedTimeZone = initialTimeZone
+    }
+    
+    this.storedOriginTime = Number(window.localStorage.getItem('calculator-originTime'))
+    if (!this.storedOriginTime) {
+      window.localStorage.setItem('calculator-originTime', initialTime.toString())
+      this.storedOriginTime = initialTime
+    }
+    
+    this.setState({
+      localTimeNow: DateTime.local().setZone(this.localZoneName),
+      timeZone: this.storedTimeZone,
+      originTime: this.storedOriginTime
+    })
+    
     this.timerID = setInterval(() => this.tick(), 1000)
   }
   
@@ -86,7 +92,6 @@ class TimeConverter extends Component {
             </div>
             <ConvertedTime 
               timeZone={this.state.timeZone} 
-              timeNow={DateTime.fromMillis(this.state.originTime, {zone: this.state.timeZone})}
               />
             <div>
               <button
@@ -111,7 +116,6 @@ class TimeConverter extends Component {
             </div>
             <ConvertedTime 
               timeZone={this.state.timeZone} 
-              timeNow={DateTime.fromMillis(this.state.originTime, {zone: this.state.timeZone})}
               />
             <div>
               <button
