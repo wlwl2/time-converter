@@ -15,9 +15,9 @@ const TitleLinks = () => (
     <Link to="/converter/" className={css.titleLink} activeStyle={activeStyles}>
       Converter
     </Link>
-    <Link to="/calculator/" className={css.titleLink} activeStyle={activeStyles}>
+    {/*<Link to="/calculator/" className={css.titleLink} activeStyle={activeStyles}>
       Calculator
-    </Link>
+    </Link>*/}
   </div>
 )
 
