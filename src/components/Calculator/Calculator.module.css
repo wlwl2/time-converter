@@ -12,9 +12,9 @@
 .timeGroup {
   display: inline-block;
   width: 50%;
-  min-height: 300px;
   vertical-align: top;
   text-align: center;
+  padding: 0 0 20px 0;
 }
 
 .title {
@@ -40,4 +40,8 @@
   border-width: 1px;
   border-color: #626161;
   cursor: pointer;
+}
+
+.timeDifference {
+  text-align: center;
 }

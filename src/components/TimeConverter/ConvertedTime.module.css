@@ -1,11 +1,3 @@
-.mainTimeGroup {
-  margin: 20px 0;
-  padding: 10px;
-  display: inline-block;
-  vertical-align: middle;
-  min-height: 161px;
-}
-
 .timeNow {
   font-size: 40px;
   line-height: 1.4em;
@@ -16,6 +8,15 @@
   line-height: 1.4em;
 }
 
+.mainTimeGroup {
+  padding: 10px 0;
+}
+
 .namedOffsetNow {
   font-size: 16px;
+}
+
+.dayDiffMessage {
+  font-size: 20px;
+  font-weight: bold;
 }

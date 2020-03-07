@@ -1,32 +1,23 @@
-.time {
-  font-size: 32px;
+.timeNow {
+  font-size: 40px;
   line-height: 1.4em;
 }
 
-.date {
+.dateNow {
   font-size: 24px;
   line-height: 1.4em;
 }
 
-.timeGroup {
-  display: inline-block;
-  margin: 0 0 10px 0;
+.mainTimeGroup {
+  margin: 20px 0;
   padding: 10px;
-  width: 220px;
-  vertical-align: top;
-  position: relative;
 }
 
-.namedOffset {
+.namedOffsetNow {
   font-size: 16px;
 }
 
-.dayDiffMessage {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.deleteButton {
+.resetButton {
   font-size: 12px;
   line-height: 14px;
   border-radius: 4px;
