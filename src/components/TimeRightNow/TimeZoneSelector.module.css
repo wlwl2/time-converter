@@ -48,3 +48,9 @@
   top: calc(50% - 13px);
   display: inline-block;
 }
+
+@media (max-width: 400px) {
+  .mainContainer select {
+    width: 160px;
+  }
+}
