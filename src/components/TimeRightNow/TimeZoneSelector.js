@@ -141,7 +141,7 @@ class TimeZoneSelector extends Component {
             <input className="mainTimeZoneInput" onChange={this.handleMainTextInput} />
           </div>
           <select 
-            value={this.state.selectedMainTimezone} 
+            value={this.props.timeZone}
             onChange={this.handleMainSelectChange} 
             name="timezones" 
             className="mainTimeZoneSelect">
