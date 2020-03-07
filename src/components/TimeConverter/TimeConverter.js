@@ -1,30 +1,59 @@
 // import PropTypes from "prop-types"
 import React, {Component} from "react"
-// import DatePicker from "react-datepicker";
 import css from "./TimeConverter.module.css"
-import { DateTime } from "luxon"
-import "react-datepicker/dist/react-datepicker.css";
+import {DateTime} from "luxon"
+import LocalTime from './LocalTime'
+import ConvertedTime from './ConvertedTime'
+import DatePickerGroup from './DatePickerGroup'
+import ZoneSelector from './ZoneSelector'
+import {TIMEZONES_WITH_COMMENTS} from '../TimeRightNow/TIMEZONES_WITH_COMMENTS'
+
+const initialTimeZone = DateTime.local().zone.name
+const initialTime = Date.now()
+
+let storedOriginTimeZone = window.localStorage.getItem('timeConverter-originTimeZone')
+if (!storedOriginTimeZone) {
+  window.localStorage.setItem('timeConverter-originTimeZone', initialTimeZone)
+  storedOriginTimeZone = initialTimeZone
+}
+
+let storedTargetTimeZone = window.localStorage.getItem('timeConverter-targetTimeZone')
+if (!storedTargetTimeZone) {
+  window.localStorage.setItem('timeConverter-targetTimeZone', initialTimeZone)
+  storedTargetTimeZone = initialTimeZone
+}
+
+let storedOriginTime = Number(window.localStorage.getItem('timeConverter-originTime'))
+if (!storedOriginTime) {
+  window.localStorage.setItem('timeConverter-originTime', initialTime.toString())
+  storedOriginTime = initialTime
+}
 
 class TimeConverter extends Component {
-  timeNowFormat = "H':'mm':'ss"
-  dateNowFormat = "ccc d LLL y"
-  namedOffsetFormat = "ZZZZZ"
-  
   constructor (props) {
     super(props)
+    this.localZoneName = DateTime.local().zone.name
+    this.changeOriginTimeZone = this.changeOriginTimeZone.bind(this)
+    this.changeTargetTimeZone = this.changeTargetTimeZone.bind(this)
+    this.changeOriginTime = this.changeOriginTime.bind(this)
+    this.resetTime = this.resetTime.bind(this)
     this.state = {
-      singaporeTime: DateTime.local().setZone("Asia/Singapore").toFormat(this.timeNowFormat),
-      singaporeDate: DateTime.local().setZone("Asia/Singapore").toFormat(this.dateNowFormat),
-      singaporeNamedOffset: DateTime.local().setZone("Asia/Singapore").toFormat(this.namedOffsetFormat),
-      startDate: new Date()
+      localTimeNow: DateTime.local().setZone(this.localZoneName),
+      originTimeZone: storedOriginTimeZone,
+      targetTimeZone: storedTargetTimeZone,
+      originTime: storedOriginTime,
+      originSelectOptions: TIMEZONES_WITH_COMMENTS,
+      targetSelectOptions: TIMEZONES_WITH_COMMENTS
     }
   }
 
+  changeOriginTime (newTime) {
+    window.localStorage.setItem('timeConverter-originTime', newTime.toString())
+    this.setState({originTime: newTime})
+  }
+  
   componentDidMount () {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    )
+    this.timerID = setInterval(() => this.tick(), 1000)
   }
   
   componentWillUnmount () {
@@ -32,27 +61,89 @@ class TimeConverter extends Component {
   }
   
   tick () {
+    this.setState({localTimeNow: DateTime.local().setZone(this.localZoneName)})
+  }
+  
+  changeOriginTimeZone (timeZoneName, timeZoneOptions) {
+    window.localStorage.setItem('timeConverter-originTimeZone', timeZoneName)
     this.setState({
-      singaporeTime: DateTime.local().setZone("Asia/Singapore").toFormat(this.timeNowFormat)
+      originTimeZone: timeZoneName,
+      originSelectOptions: timeZoneOptions
     })
   }
   
-  handleChange = startDate => {
+  changeTargetTimeZone (timeZoneName, timeZoneOptions) {
+    window.localStorage.setItem('timeConverter-targetTimeZone', timeZoneName)
     this.setState({
-      startDate
+      targetTimeZone: timeZoneName,
+      targetSelectOptions: timeZoneOptions
+    })
+  }
+  
+  resetTime () {
+    const textInputs = document.querySelectorAll('.timeZoneInput')
+    textInputs.forEach(input => input.value = '')
+    const localTimeZone = DateTime.local().zone.name
+    const localTimeNow = Date.now()
+    window.localStorage.setItem('timeConverter-originTimeZone', localTimeZone)
+    window.localStorage.setItem('timeConverter-originTime', localTimeNow.toString())
+    window.localStorage.setItem('timeConverter-targetTimeZone', localTimeZone)
+    this.setState({
+      originTimeZone: localTimeZone,
+      targetTimeZone: localTimeZone,
+      originTime: localTimeNow,
+      originSelectOptions: TIMEZONES_WITH_COMMENTS,
+      targetSelectOptions: TIMEZONES_WITH_COMMENTS
     })
   }
   
   render () {
     return (
       <div>
-        <div className={css.mainTimeGroup}>
-          Singapore: 
-          <div className={css.timeNow}>{this.state.singaporeTime}</div>
-          <div className={css.dateNow}>{this.state.singaporeDate}</div>
-          <div className={css.namedOffsetNow}>{this.state.singaporeNamedOffset}</div>
+        <LocalTime 
+          originTimeZone={this.localZoneName} 
+          timeNow={this.state.localTimeNow} />
+        
+        <section className={css.timeConverter}>
+          <div className={css.timeGroup}>
+            <div className={css.title}>Origin</div>
+            <ZoneSelector
+              role="Origin"
+              originTimeZone={this.state.originTimeZone}
+              changeOriginZone={this.changeOriginTimeZone}
+              originSelectOptions={this.state.originSelectOptions}
+              />
+            <div className={css.datepickerContainer}>
+              <DatePickerGroup 
+                originTime={this.state.originTime}
+                changeOriginTime={this.changeOriginTime}
+                />
+            </div>
+            <div>
+              <button
+                className={css.resetButton}
+                onClick={this.resetTime}>
+                Reset Time
+              </button>
+            </div>
+          </div>
           
-        </div>
+          <div className={css.timeGroup}>
+            <div className={css.title}>Result</div>
+            <ZoneSelector 
+              role="Target"
+              targetTimeZone={this.state.targetTimeZone}
+              changeTargetZone={this.changeTargetTimeZone}
+              targetSelectOptions={this.state.targetSelectOptions}
+              />
+            <ConvertedTime 
+              originTimeZone={this.state.originTimeZone} 
+              targetTimeZone={this.state.targetTimeZone} 
+              timeNow={this.state.originTime}
+              />
+          </div>
+          
+        </section>
       </div>
     )
   }

@@ -1,14 +1,14 @@
 import React from "react"
-import css from "./OriginCard.module.css"
+import css from "./LocalTime.module.css"
 
-function OriginCard (props) {
+function LocalTime (props) {
   const timeNowFormat = "H':'mm':'ss"
   const dateNowFormat = "ccc d LLL y"
   const namedOffsetFormat = "ZZZZZ"
   
   return (
     <section className={css.mainTimeGroup}>
-      {props.location}:  
+      Local Time:
       <div className={css.timeNow}>
         {props.timeNow.setZone(props.timeZone).toFormat(timeNowFormat)}
       </div>
@@ -19,7 +19,7 @@ function OriginCard (props) {
         {props.timeNow.setZone(props.timeZone).toFormat(namedOffsetFormat)}
       </div>
     </section>
-  );
+  )
 }
 
-export default OriginCard
+export default LocalTime
