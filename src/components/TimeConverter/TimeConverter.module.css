@@ -41,3 +41,17 @@
   border-color: #626161;
   cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+  .timeConverter {
+    margin: 0 10px 80px;
+  }
+  
+  .timeGroup {
+    display: block;
+    width: auto;
+    min-height: 0;
+    vertical-align: top;
+    text-align: center;
+  }
+}
