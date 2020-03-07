@@ -7,17 +7,18 @@ import css from "./TimeRightNow.module.css"
 import {INITIAL_CARD_ZONES} from './INITIAL_CARD_ZONES'
 
 const initialMainZone = { location: 'Local Time', timeZone: DateTime.local().zone.name }
+const windowGlobal = typeof window !== 'undefined' && window
 
-let storedCardZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
+let storedCardZones = JSON.parse(windowGlobal.localStorage.getItem('timeRightNow-cardZones'))
 // These sorts of checks are problematic.
 if (!storedCardZones) {
   window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
   storedCardZones = INITIAL_CARD_ZONES
 }
 
-let storedMainZone = JSON.parse(window.localStorage.getItem('timeRightNow-mainZone'))
+let storedMainZone = JSON.parse(windowGlobal.localStorage.getItem('timeRightNow-mainZone'))
 if (!storedMainZone) {
-  window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
+  windowGlobal.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
   storedMainZone = initialMainZone
 }
 
@@ -54,8 +55,8 @@ class TimeRightNow extends Component {
   
   resetAll () {
     const initialMainZone = { location: 'Local Time', timeZone: DateTime.local().zone.name }
-    window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
+    windowGlobal.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
+    windowGlobal.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
     this.setState({
       mainTimeZone: initialMainZone,
       cardZones: INITIAL_CARD_ZONES
@@ -64,25 +65,25 @@ class TimeRightNow extends Component {
   
   changeMainTimeZone (iANATZName) {
     let timeZone = { location: iANATZName, timeZone: iANATZName }
-    window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(timeZone))
+    windowGlobal.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(timeZone))
     this.setState({ mainTimeZone: timeZone })
   }
   
   addTimeZone (iANATZName) {
     let timeZoneToBeAdded = { location: iANATZName, timeZone: iANATZName }
-    let oldTimeZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
+    let oldTimeZones = JSON.parse(windowGlobal.localStorage.getItem('timeRightNow-cardZones'))
     let newTimeZones = oldTimeZones.concat([timeZoneToBeAdded])
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(newTimeZones))
+    windowGlobal.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(newTimeZones))
     this.setState({ cardZones: newTimeZones })
   }
   
   removeTimeZone (indexToRemove) {
-    let oldTimeZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
+    let oldTimeZones = JSON.parse(windowGlobal.localStorage.getItem('timeRightNow-cardZones'))
     let filtered = oldTimeZones.filter(checkIndex)
     function checkIndex (timeZone, index) {
       if (index !== indexToRemove) return timeZone
     }
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(filtered))
+    windowGlobal.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(filtered))
     this.setState({ cardZones: filtered })
   }
   
