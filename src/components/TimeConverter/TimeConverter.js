@@ -11,23 +11,21 @@ import {TIMEZONES_WITH_COMMENTS} from '../TimeRightNow/TIMEZONES_WITH_COMMENTS'
 const initialTimeZone = DateTime.local().zone.name
 const initialTime = Date.now()
 
-const windowGlobal = typeof window !== 'undefined' && window
-
-let storedOriginTimeZone = windowGlobal.localStorage.getItem('timeConverter-originTimeZone')
+let storedOriginTimeZone = window.localStorage.getItem('timeConverter-originTimeZone')
 if (!storedOriginTimeZone) {
-  windowGlobal.localStorage.setItem('timeConverter-originTimeZone', initialTimeZone)
+  window.localStorage.setItem('timeConverter-originTimeZone', initialTimeZone)
   storedOriginTimeZone = initialTimeZone
 }
 
-let storedTargetTimeZone = windowGlobal.localStorage.getItem('timeConverter-targetTimeZone')
+let storedTargetTimeZone = window.localStorage.getItem('timeConverter-targetTimeZone')
 if (!storedTargetTimeZone) {
-  windowGlobal.localStorage.setItem('timeConverter-targetTimeZone', initialTimeZone)
+  window.localStorage.setItem('timeConverter-targetTimeZone', initialTimeZone)
   storedTargetTimeZone = initialTimeZone
 }
 
-let storedOriginTime = Number(windowGlobal.localStorage.getItem('timeConverter-originTime'))
+let storedOriginTime = Number(window.localStorage.getItem('timeConverter-originTime'))
 if (!storedOriginTime) {
-  windowGlobal.localStorage.setItem('timeConverter-originTime', initialTime.toString())
+  window.localStorage.setItem('timeConverter-originTime', initialTime.toString())
   storedOriginTime = initialTime
 }
 
@@ -50,7 +48,7 @@ class TimeConverter extends Component {
   }
 
   changeOriginTime (newTime) {
-    windowGlobal.localStorage.setItem('timeConverter-originTime', newTime.toString())
+    window.localStorage.setItem('timeConverter-originTime', newTime.toString())
     this.setState({originTime: newTime})
   }
   
@@ -67,7 +65,7 @@ class TimeConverter extends Component {
   }
   
   changeOriginTimeZone (timeZoneName, timeZoneOptions) {
-    windowGlobal.localStorage.setItem('timeConverter-originTimeZone', timeZoneName)
+    window.localStorage.setItem('timeConverter-originTimeZone', timeZoneName)
     this.setState({
       originTimeZone: timeZoneName,
       originSelectOptions: timeZoneOptions
@@ -75,7 +73,7 @@ class TimeConverter extends Component {
   }
   
   changeTargetTimeZone (timeZoneName, timeZoneOptions) {
-    windowGlobal.localStorage.setItem('timeConverter-targetTimeZone', timeZoneName)
+    window.localStorage.setItem('timeConverter-targetTimeZone', timeZoneName)
     this.setState({
       targetTimeZone: timeZoneName,
       targetSelectOptions: timeZoneOptions
@@ -87,9 +85,9 @@ class TimeConverter extends Component {
     textInputs.forEach(input => input.value = '')
     const localTimeZone = DateTime.local().zone.name
     const localTimeNow = Date.now()
-    windowGlobal.localStorage.setItem('timeConverter-originTimeZone', localTimeZone)
-    windowGlobal.localStorage.setItem('timeConverter-originTime', localTimeNow.toString())
-    windowGlobal.localStorage.setItem('timeConverter-targetTimeZone', localTimeZone)
+    window.localStorage.setItem('timeConverter-originTimeZone', localTimeZone)
+    window.localStorage.setItem('timeConverter-originTime', localTimeNow.toString())
+    window.localStorage.setItem('timeConverter-targetTimeZone', localTimeZone)
     this.setState({
       originTimeZone: localTimeZone,
       targetTimeZone: localTimeZone,

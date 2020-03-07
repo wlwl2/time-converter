@@ -10,17 +10,15 @@ import ZoneSelector from './ZoneSelector'
 const initialTimeZone = DateTime.local().zone.name
 const initialTime = Date.now()
 
-const windowGlobal = typeof window !== 'undefined' && window
-
-let storedTimeZone = windowGlobal.localStorage.getItem('calculator-timeZone')
+let storedTimeZone = window.localStorage.getItem('calculator-timeZone')
 if (!storedTimeZone) {
-  windowGlobal.localStorage.setItem('calculator-timeZone', initialTimeZone)
+  window.localStorage.setItem('calculator-timeZone', initialTimeZone)
   storedTimeZone = initialTimeZone
 }
 
-let storedOriginTime = Number(windowGlobal.localStorage.getItem('calculator-originTime'))
+let storedOriginTime = Number(window.localStorage.getItem('calculator-originTime'))
 if (!storedOriginTime) {
-  windowGlobal.localStorage.setItem('calculator-originTime', initialTime.toString())
+  window.localStorage.setItem('calculator-originTime', initialTime.toString())
   storedOriginTime = initialTime
 }
 
@@ -51,17 +49,17 @@ class TimeConverter extends Component {
   }
   
   changeTimeZone (timeZoneName) {
-    windowGlobal.localStorage.setItem('calculator-timeZone', timeZoneName)
+    window.localStorage.setItem('calculator-timeZone', timeZoneName)
     this.setState({timeZone: timeZoneName})
   }
   
   changeTime (newTime) {
-    windowGlobal.localStorage.setItem('calculator-originTime', newTime.toString())
+    window.localStorage.setItem('calculator-originTime', newTime.toString())
     this.setState({originTime: newTime})
   }
   
   resetTime () {
-    windowGlobal.localStorage.setItem('calculator-originTime', Date.now().toString())
+    window.localStorage.setItem('calculator-originTime', Date.now().toString())
     this.setState({originTime: Date.now()})
   }
   
