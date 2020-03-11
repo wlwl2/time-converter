@@ -3,6 +3,7 @@ import {DateTime} from "luxon"
 import OriginCard from './OriginCard'
 import Card from './Card'
 import TimeZoneSelector from './TimeZoneSelector'
+import Dst from './Dst'
 import css from "./TimeRightNow.module.css"
 import {INITIAL_CARD_ZONES} from './INITIAL_CARD_ZONES'
 
@@ -120,6 +121,10 @@ class TimeRightNow extends Component {
             resetAllButtonClick={this.resetAll}
             selectMainTimeZone={this.changeMainTimeZone}
             />
+          <Dst 
+            timeNow={this.state.timeNow}
+            timeZone={this.state.mainTimeZone.timeZone}
+          />
         </div>
         <div className={css.TimeContainer}>
           {cards}
