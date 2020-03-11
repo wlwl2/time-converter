@@ -58,7 +58,7 @@ class Dst extends Component {
     } 
     
     if (dstChangeDates.length > 0) {
-      finalMessage = `DST changes on (approx.): ${dstChangeDatesJoined}.`
+      finalMessage = `DST changes on (approx.): ${dstChangeDatesJoined} in ${dstChangeTimeZone}.`
     }
     
     return finalMessage
