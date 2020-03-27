@@ -38,6 +38,12 @@ updated version.**
 If Luxon/browser APIs/existing sources are already handling this, I'll see if I
 can update this in the future to handle DST changes down to the hour.
 
+### Other things to be done
+
+- Accessibility
+- Testing/Support for low-price devices
+- Format customization (as in DD MM YYYY etc.)
+
 ## Publishing to GitHub
 
 ### Updating Published App
