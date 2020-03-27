@@ -1,6 +1,42 @@
 # time-converter
 
-An Offline Web Time Converter.
+An Offline Web Time Converter. Built using Gatsby.js.
+
+Meant to be a very static site. Only using front-end/client-side/browser 
+features.
+
+See "Updating Published App" for details on how to update the app if you are 
+customizing your own copy of this repository.
+
+## Contributing/Customizing this application
+
+DSTs and locations might change over time, so one way to make a significant
+contribution would be to keep these things updated.
+
+### Locations
+
+Currently, each location and linked time-zone follows this format:
+
+```js
+{ 
+  location: 'Boston', 
+  timeZone: 'America/New_York' 
+}
+```
+
+The current time zones are from tzdb-2019c -> zone1970.tab.
+(https://www.iana.org/time-zones)
+
+It would be nice to have a **separate** set of data which includes more
+locations. 
+
+**Just replace how all of this is done currently with that 
+updated version.**
+
+### DST
+
+If Luxon/browser APIs/existing sources are already handling this, I'll see if I
+can update this in the future to handle DST changes down to the hour.
 
 ## Publishing to GitHub
 
