@@ -43,7 +43,7 @@ class TimeConverter extends Component {
       originTime: this.storedOriginTime
     })
     
-    this.timerID = setInterval(() => this.tick(), 1000)
+    this.timerID = setInterval(() => this.tick(), 500)
   }
   
   componentWillUnmount () {
