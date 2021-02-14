@@ -46,6 +46,13 @@ can update this in the future to handle DST changes down to the hour.
 
 ## Publishing to GitHub
 
+If you encounter any problems, you can try to
+remove the `node_modules` directory and `package-lock.json` file.
+
+Then run `npm i` again to reinstall node modules.
+
+See https://github.com/babel/babel/issues/11216#issuecomment-595400322
+
 ### Updating Published App
 
 Run `npm run deploy`.
