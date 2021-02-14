@@ -62,7 +62,7 @@ class TimeConverter extends Component {
       targetSelectOptions: TIMEZONES_WITH_COMMENTS
     })
     
-    this.timerID = setInterval(() => this.tick(), 1000)
+    this.timerID = setInterval(() => this.tick(), 500)
   }
   
   componentWillUnmount () {
