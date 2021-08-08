@@ -19,8 +19,7 @@ fs.readFile('zone1970.txt', (err, data) => {
     timeZones.push(timezone)
   })
   
-  fs.writeFile('tz-and-comments-only-raw.js', 
-  JSON.stringify(timeZones, null, 2), (err) => {
+  fs.writeFile('tz-and-comments-only-raw.js', JSON.stringify(timeZones), (err) => {
     if (err) throw err
     console.log('The file has been saved!')
   })
