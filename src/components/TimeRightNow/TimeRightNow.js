@@ -60,9 +60,18 @@ class TimeRightNow extends Component {
   }
   
   resetAll () {
-    const initialMainZone = { location: 'Local Time', timeZone: DateTime.local().zone.name }
-    window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
+    const initialMainZone = { 
+      location: 'Local Time', 
+      timeZone: DateTime.local().zone.name 
+    }
+    window.localStorage.setItem(
+      'timeRightNow-mainZone', 
+      JSON.stringify(initialMainZone)
+    )
+    window.localStorage.setItem(
+      'timeRightNow-cardZones', 
+      JSON.stringify(INITIAL_CARD_ZONES)
+    )
     this.setState({
       mainTimeZone: initialMainZone,
       cardZones: INITIAL_CARD_ZONES
