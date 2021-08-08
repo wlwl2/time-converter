@@ -7,7 +7,10 @@ import Dst from './Dst'
 import css from "./TimeRightNow.module.css"
 import {INITIAL_CARD_ZONES} from './INITIAL_CARD_ZONES'
 
-const initialMainZone = { location: 'Local Time', timeZone: DateTime.local().zone.name }
+const initialMainZone = { 
+  location: 'Local Time', 
+  timeZone: DateTime.local().zone.name 
+}
 
 class TimeRightNow extends Component {
   constructor (props) {
