@@ -8,15 +8,15 @@ fs.readFile('../tz-and-comments-only-raw.js', (err, data) => {
   const allData = data.toString()
   const allTimezones = JSON.parse(allData)
   const usCustomZones = [
-    {"TZ":"US_PT_Pacific_Time_Ctm","comments":"America/Los_Angeles"},
-    {"TZ":"US_MT_Mountain_Time_Ctm","comments":"America/Edmonton"},
-    {"TZ":"US_CT_Central_Time_Ctm","comments":"America/Monterrey"},
-    {"TZ":"US_ET_Eastern_Time_Ctm","comments":"America/New_York"},
-    {"TZ":"US_Alaska_Ctm","comments":"America/Anchorage"},
-    {"TZ":"US_Aleutian_Islands_Ctm","comments":"America/Adak"},
-    {"TZ":"US_Hawaii_Ctm","comments":"Pacific/Honolulu"},
-    {"TZ":"US_Samoa_Ctm","comments":"Pacific/Pago_Pago"},
-    {"TZ":"US_Guam_Ctm","comments":"Pacific/Guam"}
+    {"TZ":"US PT Pacific Time (C)","comments":"America/Los_Angeles"},
+    {"TZ":"US MT Mountain Time (C)","comments":"America/Edmonton"},
+    {"TZ":"US CT Central Time (C)","comments":"America/Monterrey"},
+    {"TZ":"US ET Eastern Time (C)","comments":"America/New_York"},
+    {"TZ":"US Alaska (C)","comments":"America/Anchorage"},
+    {"TZ":"US Aleutian Islands (C)","comments":"America/Adak"},
+    {"TZ":"US Hawaii (C)","comments":"Pacific/Honolulu"},
+    {"TZ":"US Samoa (C)","comments":"Pacific/Pago_Pago"},
+    {"TZ":"US Guam (C)","comments":"Pacific/Guam"}
   ]
   const combined = allTimezones.concat(usCustomZones)
   
