@@ -50,7 +50,12 @@ Custom US time zones are COMBINED/CONCATENATED to the IANA time zones
 
 Custom time zones take the format:
 
-`{"TZ":"US PT Pacific Time (C)","comments":"America/Los_Angeles"}`
+```js
+{
+  "TZ": "US PT Pacific Time (C)",
+  "comments": "America/Los_Angeles"
+}
+```
 
 Where the `(C)` at the end of `TZ` indicates a custom time zone, and the 
 IANA time zone is now moved into the comments (the comments ONLY consists of 
