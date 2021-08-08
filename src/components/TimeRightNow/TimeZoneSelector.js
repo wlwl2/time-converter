@@ -108,7 +108,9 @@ class TimeZoneSelector extends Component {
         <div>
           {/*toggleBox*/}
           <div className={css.inputContainer}>
-            <input className="addTimeZoneInput" onChange={this.handleAddTextInput} />
+            <input 
+              className="addTimeZoneInput" 
+              onChange={this.handleAddTextInput} />
           </div>
           <select 
             value={this.state.selectedMainTimezone} 
@@ -129,7 +131,13 @@ class TimeZoneSelector extends Component {
               Add
             </button>
           </div>
-          {/*<div><button className={css.deleteButton}>Hide Options</button></div>*/}
+            {/*
+              <div>
+                <button className={css.deleteButton}>
+                  Hide Options
+                </button>
+              </div>
+            */}
         </div>
       )
     }
@@ -138,7 +146,9 @@ class TimeZoneSelector extends Component {
       inputs = (
         <div>
           <div className={css.inputContainer}>
-            <input className="mainTimeZoneInput" onChange={this.handleMainTextInput} />
+            <input 
+              className="mainTimeZoneInput" 
+              onChange={this.handleMainTextInput} />
           </div>
           <select 
             value={this.props.timeZone}

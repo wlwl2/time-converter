@@ -31,16 +31,20 @@ class TimeRightNow extends Component {
   }
   
   componentDidMount () {
-    this.storedCardZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
+    this.storedCardZones = JSON.parse(
+      window.localStorage.getItem('timeRightNow-cardZones'))
     // These sorts of checks are problematic.
     if (!this.storedCardZones) {
-      window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(INITIAL_CARD_ZONES))
+      window.localStorage.setItem('timeRightNow-cardZones', 
+        JSON.stringify(INITIAL_CARD_ZONES))
       this.storedCardZones = INITIAL_CARD_ZONES
     }
     
-    this.storedMainZone = JSON.parse(window.localStorage.getItem('timeRightNow-mainZone'))
+    this.storedMainZone = JSON.parse(
+      window.localStorage.getItem('timeRightNow-mainZone'))
     if (!this.storedMainZone) {
-      window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(initialMainZone))
+      window.localStorage.setItem('timeRightNow-mainZone', 
+        JSON.stringify(initialMainZone))
       this.storedMainZone = initialMainZone
     }
     
@@ -59,7 +63,11 @@ class TimeRightNow extends Component {
   
   tick () {
     // const timeNow = DateTime.local().plus({hours: -3})
-    this.setState({ timeNow: DateTime.local().setZone(this.storedMainZone.timeZone) })
+    this.setState(
+      { 
+        timeNow: DateTime.local().setZone(this.storedMainZone.timeZone) 
+      }
+    )
   }
   
   resetAll () {
@@ -83,25 +91,30 @@ class TimeRightNow extends Component {
   
   changeMainTimeZone (iANATZName) {
     let timeZone = { location: iANATZName, timeZone: iANATZName }
-    window.localStorage.setItem('timeRightNow-mainZone', JSON.stringify(timeZone))
+    window.localStorage.setItem('timeRightNow-mainZone', 
+      JSON.stringify(timeZone))
     this.setState({ mainTimeZone: timeZone })
   }
   
   addTimeZone (iANATZName) {
     let timeZoneToBeAdded = { location: iANATZName, timeZone: iANATZName }
-    let oldTimeZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
+    let oldTimeZones = JSON.parse(
+      window.localStorage.getItem('timeRightNow-cardZones'))
     let newTimeZones = oldTimeZones.concat([timeZoneToBeAdded])
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(newTimeZones))
+    window.localStorage.setItem('timeRightNow-cardZones', 
+      JSON.stringify(newTimeZones))
     this.setState({ cardZones: newTimeZones })
   }
   
   removeTimeZone (indexToRemove) {
-    let oldTimeZones = JSON.parse(window.localStorage.getItem('timeRightNow-cardZones'))
+    let oldTimeZones = JSON.parse(
+      window.localStorage.getItem('timeRightNow-cardZones'))
     let filtered = oldTimeZones.filter(checkIndex)
     function checkIndex (timeZone, index) {
       if (index !== indexToRemove) return timeZone
     }
-    window.localStorage.setItem('timeRightNow-cardZones', JSON.stringify(filtered))
+    window.localStorage.setItem('timeRightNow-cardZones', 
+      JSON.stringify(filtered))
     this.setState({ cardZones: filtered })
   }
   
