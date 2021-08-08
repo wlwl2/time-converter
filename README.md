@@ -8,7 +8,14 @@ features.
 See "Updating Published App" for details on how to update the app if you are 
 customizing your own copy of this repository.
 
-## Contributing/Customizing this application
+## Before you start development
+
+You will need [Node.js](https://nodejs.org/en/). I have only tested it 
+using `v12.19.1`. Make sure NPM is installed (it often comes bundled with 
+Node.js) and Gatsby CLI too `npm install -g gatsby-cli` (test using 
+`gatsby --version`).
+
+## Contributing to or customizing this application
 
 DSTs and locations might change over time, so one way to make a significant
 contribution would be to keep these things updated.
