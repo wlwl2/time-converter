@@ -9,15 +9,15 @@ fs.readFile('../tz-and-comments-only-raw.js', (err, data) => {
   const allTimezones = JSON.parse(allData)
   console.log(allTimezones);
   const usCustomZones = [
-    {"TZ":"","comments":"US PT Pacific Time (C)"},
-    {"TZ":"","comments":"US MT Mountain Time (C)"},
-    {"TZ":"","comments":"US CT Central Time (C)"},
-    {"TZ":"","comments":"US ET Eastern Time (C)"},
-    {"TZ":"","comments":"US Alaska (C)"},
-    {"TZ":"","comments":"US Aleutian Islands (C)"},
-    {"TZ":"","comments":"US Hawaii (C)"},
-    {"TZ":"","comments":"US Samoa (C)"},
-    {"TZ":"","comments":"US Guam (C)"}
+    {"TZ":"US_PT_Pacific_Time_Ctm","comments":"America/Los_Angeles"},
+    {"TZ":"US_MT_Mountain_Time_Ctm","comments":"America/Edmonton"},
+    {"TZ":"US_CT_Central_Time_Ctm","comments":"America/Monterrey"},
+    {"TZ":"US_ET_Eastern_Time_Ctm","comments":"America/New_York"},
+    {"TZ":"US_Alaska_Ctm","comments":"America/Anchorage"},
+    {"TZ":"US_Aleutian_Islands_Ctm","comments":"America/Adak"},
+    {"TZ":"US_Hawaii_Ctm","comments":"Pacific/Honolulu"},
+    {"TZ":"US_Samoa_Ctm","comments":"Pacific/Pago_Pago"},
+    {"TZ":"US_Guam_Ctm","comments":"Pacific/Guam"}
   ]
   
   // fs.writeFile('tz-and-comments-only-raw.js', 
