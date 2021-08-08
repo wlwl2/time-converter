@@ -16,7 +16,8 @@ fs.readFile('../tz-and-comments-only-raw.js', (err, data) => {
     {"TZ":"US Aleutian Islands (C)","comments":"America/Adak"},
     {"TZ":"US Hawaii (C)","comments":"Pacific/Honolulu"},
     {"TZ":"US Samoa (C)","comments":"Pacific/Pago_Pago"},
-    {"TZ":"US Guam (C)","comments":"Pacific/Guam"}
+    {"TZ":"US Guam Chamorro (C)","comments":"Pacific/Guam"},
+    {"TZ":"US Puerto Rico Virgin Islands (C)","comments":"America/Puerto_Rico"}
   ]
   const combined = allTimezones.concat(usCustomZones)
   

@@ -6,6 +6,7 @@ import TimeZoneSelector from './TimeZoneSelector'
 import Dst from './Dst'
 import css from "./TimeRightNow.module.css"
 import {INITIAL_CARD_ZONES} from './INITIAL_CARD_ZONES'
+import {TIMEZONES_WITH_COMMENTS} from './TIMEZONES_WITH_COMMENTS'
 
 const initialMainZone = { 
   location: 'Local Time', 
@@ -90,14 +91,42 @@ class TimeRightNow extends Component {
   }
   
   changeMainTimeZone (iANATZName) {
-    let timeZone = { location: iANATZName, timeZone: iANATZName }
+    let finalTZ = { location: iANATZName, timeZone: iANATZName }
+    
+    if (iANATZName.indexOf("(C)") !== -1) {
+      let allTZ = TIMEZONES_WITH_COMMENTS
+      for (var i = 0; i < allTZ.length; i++) {
+        if (allTZ[i].TZ === iANATZName) {
+          finalTZ = { 
+            location: iANATZName, 
+            timeZone: allTZ[i].comments 
+          }
+          break
+        }
+      }
+    }
+    
     window.localStorage.setItem('timeRightNow-mainZone', 
-      JSON.stringify(timeZone))
-    this.setState({ mainTimeZone: timeZone })
+      JSON.stringify(finalTZ))
+    this.setState({ mainTimeZone: finalTZ })
   }
   
   addTimeZone (iANATZName) {
     let timeZoneToBeAdded = { location: iANATZName, timeZone: iANATZName }
+    
+    if (iANATZName.indexOf("(C)") !== -1) {
+      let allTZ = TIMEZONES_WITH_COMMENTS
+      for (var i = 0; i < allTZ.length; i++) {
+        if (allTZ[i].TZ === iANATZName) {
+          timeZoneToBeAdded = { 
+            location: iANATZName, 
+            timeZone: allTZ[i].comments 
+          }
+          break
+        }
+      }
+    }
+    
     let oldTimeZones = JSON.parse(
       window.localStorage.getItem('timeRightNow-cardZones'))
     let newTimeZones = oldTimeZones.concat([timeZoneToBeAdded])

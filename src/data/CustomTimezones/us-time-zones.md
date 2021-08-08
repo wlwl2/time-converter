@@ -32,6 +32,10 @@ Pacific/Honolulu (Hawaii):
 
 Pacific/Pago_Pago (Samoa, Midway): 
 
-## US Guam
+## US Guam Chamorro
 
 Pacific/Guam:
+
+## US Puerto Rico Virgin Islands
+
+America/Puerto_Rico:
