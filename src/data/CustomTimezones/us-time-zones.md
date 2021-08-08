@@ -24,6 +24,10 @@ America/Anchorage (Alaska (most areas)):
 
 America/Adak (Aleutian Islands):
 
+## US Hawaii
+
+Pacific/Honolulu (Hawaii): 
+
 ## US Samoa
 
 Pacific/Pago_Pago (Samoa, Midway): 
