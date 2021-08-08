@@ -27,11 +27,42 @@ Currently, each location and linked time-zone follows this format:
 The current time zones are from tzdb-2019c -> zone1970.tab.
 (https://www.iana.org/time-zones)
 
-It would be nice to have a **separate** set of data which includes more
-locations. 
+IANA time zones are extracted to:
 
-**Just replace how all of this is done currently with that 
-updated version.**
+`tz-and-comments-only-raw.js` using `extract-tz-comments.js`
+
+They take the format:
+
+```js
+{
+  "TZ": "Antarctica/Rothera",
+  "comments": "Rothera"
+}
+```
+
+Where `TZ` contains the IANA time zone, and `comments` for the official 
+IANA time zones are not really important and are not currently used.
+
+Custom US time zones are COMBINED/CONCATENATED to the IANA time zones
+(`tz-and-comments-only-raw.js`) in:
+
+`combined-us-time.js` using `add-custom-timezones.js`
+
+Custom time zones take the format:
+
+`{"TZ":"US PT Pacific Time (C)","comments":"America/Los_Angeles"}`
+
+Where the `(C)` at the end of `TZ` indicates a custom time zone, and the 
+IANA time zone is now moved into the comments (the comments ONLY consists of 
+the IANA time zone). You can add any name in front of the `(C)`. Both 
+`TZ` and `comments` are used for custom time zones.
+
+In React.js components, dealing with custom time zones are dealt by 
+using this condition:
+
+`indexOf("(C)") !== -1`
+
+Just do a search for this condition in all of the `.js` files.
 
 ### DST
 
