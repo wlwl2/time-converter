@@ -74,17 +74,41 @@ class TimeConverter extends Component {
   }
   
   changeOriginTimeZone (timeZoneName, timeZoneOptions) {
-    window.localStorage.setItem('timeConverter-originTimeZone', timeZoneName)
+    let finalTZName = timeZoneName
+    
+    if (timeZoneName.indexOf("(C)") !== -1) {
+      let allTZ = TIMEZONES_WITH_COMMENTS
+      for (var i = 0; i < allTZ.length; i++) {
+        if (allTZ[i].TZ === timeZoneName) {
+          finalTZName = allTZ[i].comments
+          break
+        }
+      }
+    }
+    
+    window.localStorage.setItem('timeConverter-originTimeZone', finalTZName)
     this.setState({
-      originTimeZone: timeZoneName,
+      originTimeZone: finalTZName,
       originSelectOptions: timeZoneOptions
     })
   }
   
   changeTargetTimeZone (timeZoneName, timeZoneOptions) {
-    window.localStorage.setItem('timeConverter-targetTimeZone', timeZoneName)
+    let finalTZName = timeZoneName
+    
+    if (timeZoneName.indexOf("(C)") !== -1) {
+      let allTZ = TIMEZONES_WITH_COMMENTS
+      for (var i = 0; i < allTZ.length; i++) {
+        if (allTZ[i].TZ === timeZoneName) {
+          finalTZName = allTZ[i].comments
+          break
+        }
+      }
+    }
+    
+    window.localStorage.setItem('timeConverter-targetTimeZone', finalTZName)
     this.setState({
-      targetTimeZone: timeZoneName,
+      targetTimeZone: finalTZName,
       targetSelectOptions: timeZoneOptions
     })
   }
