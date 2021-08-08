@@ -7,7 +7,6 @@ fs.readFile('../tz-and-comments-only-raw.js', (err, data) => {
   if (err) throw err
   const allData = data.toString()
   const allTimezones = JSON.parse(allData)
-  console.log(allTimezones);
   const usCustomZones = [
     {"TZ":"US_PT_Pacific_Time_Ctm","comments":"America/Los_Angeles"},
     {"TZ":"US_MT_Mountain_Time_Ctm","comments":"America/Edmonton"},
@@ -19,10 +18,10 @@ fs.readFile('../tz-and-comments-only-raw.js', (err, data) => {
     {"TZ":"US_Samoa_Ctm","comments":"Pacific/Pago_Pago"},
     {"TZ":"US_Guam_Ctm","comments":"Pacific/Guam"}
   ]
+  const combined = allTimezones.concat(usCustomZones)
   
-  // fs.writeFile('tz-and-comments-only-raw.js', 
-  // JSON.stringify(timeZones, null, 2), (err) => {
-  //   if (err) throw err
-  //   console.log('The file has been saved!')
-  // })
+  fs.writeFile('combined-us-time.js', JSON.stringify(combined), (err) => {
+    if (err) throw err
+    console.log('The file has been saved!')
+  })
 })
