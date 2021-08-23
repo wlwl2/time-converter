@@ -1,6 +1,6 @@
 # time-converter
 
-An Offline Web Time Converter. Built using Gatsby.js.
+An offline web time converter. Built using Gatsby.js.
 
 Meant to be a very static site. Only using front-end/client-side/browser 
 features.
