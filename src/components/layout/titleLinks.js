@@ -13,6 +13,7 @@ const TitleLinks = () => (
       On your mobile phone, while still online, you may have to refresh the 
       pages below a couple of times to "save" them for offline use. Test it 
       out by turning both the Wi-Fi and mobile internet off after "saving".
+      Additional American Time zones at the end of the list.
     </div>
     <Link to="/" className={css.titleLink} activeStyle={activeStyles}>
       Time Right Now
