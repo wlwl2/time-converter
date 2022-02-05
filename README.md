@@ -73,12 +73,13 @@ IANA time zone is now moved into the comments (the comments ONLY consists of
 the IANA time zone). You can add any name in front of the `(C)`. Both 
 `TZ` and `comments` are used for custom time zones.
 
-In React.js components, dealing with custom time zones are dealt by 
+During development in React.js components, custom time zones are handled by 
 using this condition:
 
 `indexOf("(C)") !== -1`
 
-Just do a search for this condition in all of the `.js` files.
+Just do a search for this condition in all of the `*.js` files using your 
+favorite code editor.
 
 ### DST
 
