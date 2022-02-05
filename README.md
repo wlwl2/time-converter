@@ -10,14 +10,15 @@ customizing your own copy of this repository.
 
 ## Before you start development
 
-You will need [Node.js](https://nodejs.org/en/). I have only tested it 
-using `v12.19.1`. Get Gatsby CLI too (only tested with `v2.8.29`):
+You will need [Node.js](https://nodejs.org/en/). 
+
+Get Gatsby CLI too:
  
 `npm install -g gatsby-cli` 
 
-(you can check for success with `gatsby --version`). 
+(you can check for success with `gatsby --version`).
 
-Other versions of Node.js and Gatsby CLI may work.
+You may need an updated version of Node.js.
 
 ## Contributing to or customizing this application
 
