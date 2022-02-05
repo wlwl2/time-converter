@@ -9,6 +9,11 @@ const activeStyles = {
 
 const TitleLinks = () => (
   <div className={css.container}>
+    <div className={css.guide}>
+      On your mobile phone, while online, refresh the pages below to "save" 
+      them for offline use. Test it out by turning both the Wi-Fi and 
+      mobile internet off.
+    </div>
     <Link to="/" className={css.titleLink} activeStyle={activeStyles}>
       Time Right Now
     </Link>

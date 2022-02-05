@@ -3,6 +3,11 @@
   max-width: 960px;
 }
 
+.guide {
+  margin: 10px;
+  font-size: 14px;
+}
+
 .titleLink {
   display: inline-block;
   color: rgb(238, 238, 238);
