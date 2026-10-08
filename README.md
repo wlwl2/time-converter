@@ -8,16 +8,26 @@ features.
 See "Updating Published App" for details on how to update the app if you are 
 customizing your own copy of this repository.
 
-## Before you start development
+## Getting Started
 
-You will need [Node.js](https://nodejs.org/en/). You may need an updated 
-version of Node.js. Run `gatsby --version` LATER to find out which one.
+Use this repo at your own risk, it uses old versions of software and may be 
+insecure depending on how you use it.
 
-Get Gatsby CLI too:
- 
-`npm install -g gatsby-cli` 
+Requirements (Windows 11 installation):
 
-You can check for success with `gatsby --version`.
+1) Visual Studio Community (2026)- at least "Desktop development with C++" selected  
+
+2) [Node.js](https://nodejs.org/en/) (v12.22.12) You can use a node version 
+manager/switcher.
+
+3) Gatsby CLI (v2.11.0) `npm install -g gatsby-cli@2.11.0`
+
+4) Add to Path (env variable): `C:\Users\user-name\AppData\Local\Author   
+Software\nvm\installs\v12.22.12` if needed.
+
+5) You can check for success with `gatsby --version` in the root of this project.
+
+6) Also run `npm i`.
 
 ## Contributing to or customizing this application
 
@@ -102,6 +112,8 @@ Then run `npm i` again to reinstall node modules.
 See https://github.com/babel/babel/issues/11216#issuecomment-595400322
 
 ### Updating Published App
+
+I guess you should build beforehand: `gatsby build`.
 
 Run `npm run deploy`.
 
