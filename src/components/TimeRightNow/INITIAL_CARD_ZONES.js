@@ -10,7 +10,9 @@ const INITIAL_CARD_ZONES = [
   { location: 'US PT Pacific Time (C)', timeZone: 'America/Los_Angeles' },
   { location: 'US MT Mountain Time (C)', timeZone: 'America/Edmonton' },
   { location: 'US CT Central Time (C)', timeZone: 'America/Monterrey' },
-  { location: 'US ET Eastern Time (C)', timeZone: 'America/New_York' }
+  { location: 'US ET Eastern Time (C)', timeZone: 'America/New_York' },
+  { location: 'Coordinated Universal Time (UTC) (C)', timeZone: 'UTC' },
+  { location: 'Greenwich Mean Time (GMT) (C)', timeZone: 'GMT' }
 ]
 
 export {INITIAL_CARD_ZONES}

@@ -17,7 +17,9 @@ fs.readFile('../tz-and-comments-only-raw.js', (err, data) => {
     {"TZ":"US Hawaii (C)","comments":"Pacific/Honolulu"},
     {"TZ":"US Samoa (C)","comments":"Pacific/Pago_Pago"},
     {"TZ":"US Guam Chamorro (C)","comments":"Pacific/Guam"},
-    {"TZ":"US Puerto Rico Virgin Islands (C)","comments":"America/Puerto_Rico"}
+    {"TZ":"US Puerto Rico Virgin Islands (C)","comments":"America/Puerto_Rico"},
+    {"TZ":"Coordinated Universal Time (UTC) (C)","comments":"UTC"},
+    {"TZ":"Greenwich Mean Time (GMT) (C)","comments":"GMT"}
   ]
   const combined = allTimezones.concat(usCustomZones)
   
