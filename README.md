@@ -22,8 +22,7 @@ manager/switcher.
 
 3) Gatsby CLI (v2.11.0) `npm install -g gatsby-cli@2.11.0`
 
-4) Add to Path (env variable): `C:\Users\user-name\AppData\Local\Author   
-Software\nvm\installs\v12.22.12` if needed.
+4) Add to Path (env variable): C:\Users\user-name\AppData\Local\Author Software\nvm\installs\v12.22.12 if needed.
 
 5) You can check for success with `gatsby --version` in the root of this project.
 
