@@ -90,6 +90,16 @@ using this condition:
 Just do a search for this condition in all of the `*.js` files using your 
 favorite code editor.
 
+Look at:
+
+1) src\components\TimeRightNow\TIMEZONES_WITH_COMMENTS.js
+
+where you add the contents of the final combined file.
+
+2) INITIAL_CARD_ZONES.js
+
+to show them on the time right now.
+
 ### DST
 
 If Luxon/browser APIs/existing sources are already handling this, I'll see if I
