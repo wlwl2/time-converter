@@ -1,9 +1,19 @@
 # time-converter
 
-An offline web time converter. Built using Gatsby.js.
+An offline web time converter. Built using Gatsby.js, Luxon.js and IANA work.
 
 Meant to be a very static site. Only using front-end/client-side/browser 
 features.
+
+Based on 1970 time zones.
+
+See:
+
+https://data.iana.org/time-zones/theory.html or https://www.iana.org/time-zones/theory
+
+https://www.iana.org/time-zones/releases
+
+and the data folder in the source files of this repo for zone1970.tab.
 
 See "Updating Published App" for details on how to update the app if you are 
 customizing your own copy of this repository.
@@ -33,7 +43,7 @@ manager/switcher.
 DSTs and locations might change over time, so one way to make a significant
 contribution would be to keep these things updated.
 
-### Locations
+### Locations and Adding Custom Time Zones
 
 Currently, each location and linked time-zone follows this format:
 
@@ -63,10 +73,10 @@ They take the format:
 Where `TZ` contains the IANA time zone, and `comments` for the official 
 IANA time zones are not really important and are not currently used.
 
-Custom US time zones are COMBINED/CONCATENATED to the IANA time zones
+Custom time zones are COMBINED/CONCATENATED to the IANA time zones
 (`tz-and-comments-only-raw.js`) in:
 
-`combined-us-time.js` using `add-custom-timezones.js`
+`combined-custom-times.js` using `add-custom-timezones.js`
 
 Custom time zones take the format:
 

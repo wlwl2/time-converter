@@ -23,7 +23,7 @@ fs.readFile('../tz-and-comments-only-raw.js', (err, data) => {
   ]
   const combined = allTimezones.concat(usCustomZones)
   
-  fs.writeFile('combined-us-time.js', JSON.stringify(combined), (err) => {
+  fs.writeFile('combined-custom-times.js', JSON.stringify(combined), (err) => {
     if (err) throw err
     console.log('The file has been saved!')
   })
